@@ -11,7 +11,7 @@
                 <div v-if="showCompleted">
                     <p v-if=" isnewTask && completed.length<=0">You haven't completed any task</p>
                     <div  v-for="task in completed" :key="task.id">
-                        <TaskItem :task="task"/>
+                        <TaskItem  :task="task"/>
                     </div>
                 </div>
                 <div v-if="!showCompleted">

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="task-box">
       <v-text-field id="newtask" @keyup.enter.native="addTask($store.getters.title)" 
        color="grey lighten-3" full-width v-model="$store.getters.title" placeholder="add new task"></v-text-field>
       <!-- <v-btn @click="addTask($store.getters.title)">submit</v-btn> -->
@@ -22,5 +22,9 @@ export default {
 <style>
 #newtask {
     opacity: 0.4;
+    
+}
+.task-box{
+    background: linear-gradient(0deg, rgba(252, 249, 249, 0.171) 28.21%, #dddddd60 134.95%);
 }
 </style>

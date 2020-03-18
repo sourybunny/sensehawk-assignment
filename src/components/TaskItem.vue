@@ -22,6 +22,11 @@
 <script>
 export default {
     props: ['task'],
+    data(){
+        return {
+            onHover: false
+        }
+    },
     computed: {
         classList(){
             var classlist = '';
@@ -53,6 +58,10 @@ export default {
     align-items: center;
     border-bottom: 1px solid rgba(224, 221, 221, 0.616);
     background-color: white;
+    transition: all 0.5s;
+}
+.rect:hover {
+    background-color: rgba(240, 238, 238, 0.712);
 }
 .title {
     float: left;
