@@ -77,7 +77,7 @@ export default {
     
 }
 input {
-    text-indent: 2.8rem;
+    text-indent: 5.6rem;
     caret-color: black;
 }
 
