@@ -1,6 +1,6 @@
 <template>
-  <div class="rect">
-                    <div class="layout align-center">
+  <div class="rect" :data-id="task.id">
+                    <div class="layout align-center ml-3">
                         <v-checkbox filled v-model="task.completed"></v-checkbox> 
                         <div><span :class="{'grey--text':task.completed}">{{task.title}}</span></div>
                     </div>
@@ -13,7 +13,7 @@
                         solo
                         ></v-select> -->
                         
-                        <select :class="classList" class="select chip  label px-3 py-2" v-model="task.type">
+                        <select :class="classList" class="select chip mr-3 label px-3 py-2" v-model="task.type">
                             <option><span>spotify</span></option>
                             <option><span>sketch</span></option>
                             <option><span>dribble</span></option>

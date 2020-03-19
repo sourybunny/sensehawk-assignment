@@ -8,24 +8,7 @@ const state = {
     title: '',
     selectCompleted: false
 }
-// {
-//     id: 1,
-//     title: 'This is task 1 ',
-//     type: 'spotify',
-//     completed: true
-// },
-// {
-//     id: 2,
-//     title: 'This is task 2',
-//     type: 'spotify',
-//     completed: false
-// },
-// {
-//     id: 3,
-//     title: 'This is task 3',
-//     type: 'spotify',
-//     completed: false
-// }
+
 const getters = {
     listItems: (state)=>{
         return state.list;
@@ -50,7 +33,10 @@ const actions = {
     },
     setShowCompleted: ({commit},val)=>{
         commit('setShowCompleted',val)
-    }
+    },
+    updateList: ({commit},val)=>{
+        commit('updateList',val)
+    },
 }
 
 const mutations = {
@@ -64,6 +50,9 @@ const mutations = {
     },
     setShowCompleted: (state,val)=>{
         state.selectCompleted = val;
+    },
+    updateList: (state,val)=>{
+        state.list= val;
     }
 }
 export default new Vuex.Store({

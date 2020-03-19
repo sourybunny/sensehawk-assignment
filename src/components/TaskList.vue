@@ -6,24 +6,21 @@
                 @click="showCompleted?handleList(false):handleList(true)" >
                 {{showCompleted?'Show All':'Show Completed'}}
                 </v-btn>
-                <!-- <v-btn small outlined  color="orange" @click="setShowCompleted(true)" >Completed</v-btn> -->
-            
         </v-layout>
-        <v-container class="white" py-0 my-0>
+        <v-container class="white" py-0 mb-0>
             <v-layout mt-4 column>
-            <v-flex>
-                <div v-if="showCompleted">
-                    <p v-if=" isnewTask && completed.length<=0">You haven't completed any task</p>
-                    <div  v-for="task in completed" :key="task.id">
-                        <TaskItem  :task="task"/>
-                    </div>
+            <v-flex >
+                <div >
+                    <draggable v-model="list">
+                        <transition-group>
+                            <div class="drag" v-for="task in list" :key="task.id">
+                                <TaskItem :task="task"/>
+                            </div>
+                        </transition-group>
+                    </draggable>
+                    
                 </div>
-                <div v-if="!showCompleted">
-                    <p v-if="isnewTask && listItems.length<=0">This list is empty. Please add a task</p>
-                    <div v-for="task in listItems" :key="task.id">
-                    <TaskItem :task="task"/>
-                </div>
-                </div>
+                
             </v-flex>
             <NewTask v-if="$store.getters.isnewTask"/>
         </v-layout>
@@ -33,6 +30,7 @@
 </template>
 
 <script>
+import draggable from 'vuedraggable'
 import { mapGetters, mapActions} from 'vuex';
 import NewTask from './NewTask';
 import TaskItem from './TaskItem';
@@ -40,7 +38,8 @@ import TaskItem from './TaskItem';
 export default {
     components: {
         NewTask,
-        TaskItem
+        TaskItem,
+        draggable,
     },
     methods: {
         ...mapActions(['setShowCompleted']),
@@ -49,7 +48,15 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['showCompleted','completed','listItems','isnewTask'])
+        ...mapGetters(['showCompleted','completed','listItems','isnewTask']),
+        list: {
+            get(){
+                return this.showCompleted?this.completed:this.listItems;
+            },
+            set(value) {
+            this.$store.dispatch('updateList', value)
+            }
+        }
     }
 }
 </script>

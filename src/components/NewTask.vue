@@ -2,7 +2,7 @@
 <div>
 <TaskItem :task="task" class="dummy"/>
   <div class="task-box">
-    <v-text-field hide-details ref="input" autofocus id="newtask" @keyup.enter.native="addTask(name);name='';" 
+    <v-text-field hide-details ref="input" autofocus id="newtask" @keyup.enter.native="onSubmit" 
        color="grey lighten-3" full-width v-model="name" placeholder=""></v-text-field>   
   </div>
   </div>
@@ -21,7 +21,14 @@ export default {
         })
     },
     methods: {
-        ...mapActions(['addTask'])
+        ...mapActions(['addTask']),
+        onSubmit(){
+            if(this.name){
+                this.addTask(this.name);
+                this.name = '';
+            }
+
+        }
     },
     data(){
         return {
@@ -36,7 +43,7 @@ export default {
     },
     components: {
         TaskItem
-    }
+    },
 }
 </script>
 
@@ -48,7 +55,7 @@ export default {
 }
 .dummy {
     /* background: linear-gradient(0deg, rgba(250, 250, 250, 0.993) 28.21%, #fffefef5 134.95%); */
-    opacity: 0.5;
+    opacity: 0.3;
     background-color: white;
 }
 
@@ -56,7 +63,7 @@ export default {
     
 }
 input {
-    text-indent: 3rem;
+    text-indent: 2.8rem;
     caret-color: black;
 }
 
