@@ -1,7 +1,8 @@
 <template>
   <div class="rect" :data-id="task.id">
                     <div class="layout align-center ml-3">
-                        <v-checkbox filled v-model="task.completed"></v-checkbox> 
+                        <v-btn icon @click="onEdit"><i class="far grey--text fa-edit"></i></v-btn>
+                        <v-checkbox class="ml-1" filled v-model="task.completed"></v-checkbox> 
                         <div><span :class="{'grey--text':task.completed}">{{task.title}}</span></div>
                     </div>
                     <div class="mx-4 grey--text"><i class="scale-up  mr-2 far fa-folder"></i><span>0/3</span></div>
@@ -24,8 +25,17 @@
 </template>
 
 <script>
+import Events from '../events.js'
+import { mapActions } from 'vuex';
 export default {
     props: ['task'],
+    methods: {
+        ...mapActions(['editingTask']),
+        onEdit(){
+            this.editingTask(this.task);
+            Events.$emit('onEdit');
+        }
+    },
     computed: {
         classList(){
             var classlist = '';

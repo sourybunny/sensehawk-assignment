@@ -6,7 +6,8 @@ const state = {
     list: [],
     newTask: false,
     title: '',
-    selectCompleted: false
+    selectCompleted: false,
+    changeTask: null
 }
 
 const getters = {
@@ -21,6 +22,9 @@ const getters = {
     },
     showCompleted: (state)=>{
         return state.selectCompleted;
+    },
+    changeTask: (state)=>{
+        return state.changeTask
     }
 }
 
@@ -37,13 +41,17 @@ const actions = {
     updateList: ({commit},val)=>{
         commit('updateList',val)
     },
+    updateTask: ({commit}, payload)=>{
+        commit('updateTask',payload)
+    },
+    editingTask: ({commit}, payload)=>{
+        commit('setEditingTask',payload)
+    }
 }
 
 const mutations = {
     addTask: (state,payload)=>{
-        state.list.push(
-            {title:payload,id:state.list.length+1,type:'spotify',completed:false}
-            );
+        state.list.push(payload);
     },
     setNewTask: (state,val)=>{
         state.newTask = val;
@@ -53,6 +61,15 @@ const mutations = {
     },
     updateList: (state,val)=>{
         state.list= val;
+    },
+    updateTask: (state, payload)=>{
+        let index  = state.list.findIndex(task=>task.id == payload.id);
+        if(index>0){
+            state.list.splice(index,1,payload);
+        }
+    },
+    setEditingTask: (state,payload)=>{
+        state.changeTask = payload;
     }
 }
 export default new Vuex.Store({
