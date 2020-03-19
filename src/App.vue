@@ -26,7 +26,7 @@
     <v-app-bar
       app
       clipped-left flat
-      dense color="white"
+      color="white"
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-icon class="mx-3">fa fa-menu</v-icon>

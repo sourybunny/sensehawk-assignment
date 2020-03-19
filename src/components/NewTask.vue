@@ -41,12 +41,12 @@ export default {
     margin-top: -5rem;
 }
 .dummy {
-    background: linear-gradient(0deg, rgba(252, 249, 249, 0.171) 28.21%, #dddddd60 134.95%);
-    opacity: 0.2;
+    /* background: linear-gradient(0deg, rgba(250, 250, 250, 0.993) 28.21%, #fffefef5 134.95%); */
+    opacity: 0.5;
+    background-color: white;
 }
 
 #newtask {
-    /* opacity: 0.7; */
     
 }
 input {
