@@ -42,7 +42,15 @@ const getters = {
 }
 
 const actions = {
-
+    addTask: ({commit},payload)=>{
+        commit('addTask',payload)
+    },
+    setNewTask: ({commit},val)=>{
+        commit('setNewTask',val)
+    },
+    setShowCompleted: ({commit},val)=>{
+        commit('setShowCompleted',val)
+    }
 }
 
 const mutations = {
@@ -50,9 +58,6 @@ const mutations = {
         state.list.push(
             {title:payload,id:state.list.length+1,type:'spotify',completed:false}
             );
-        state.title='';
-        
-
     },
     setNewTask: (state,val)=>{
         state.newTask = val;

@@ -6,6 +6,11 @@
       v-model="drawer"
       app
     >
+      <v-list class="align-center">
+        <v-list-item>
+          <v-list-item-title class="headline text-center blue--text">io<span class="font-weight-bold">Task</span></v-list-item-title>
+        </v-list-item>
+      </v-list>
       <v-list >
         <v-list-item
           v-for="item in items"
@@ -25,13 +30,13 @@
 
     <v-app-bar
       app
-      clipped-left flat
+       flat
       color="white"
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-icon class="mx-3">fa fa-menu</v-icon>
       <v-toolbar-title class="mr-5 align-center">
-        <span class="title">iotask</span>
+        <span class="title ">Tasks</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-layout

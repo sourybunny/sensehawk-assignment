@@ -2,21 +2,26 @@
 <div>
 <TaskItem :task="task" class="dummy"/>
   <div class="task-box">
-      
-    <v-text-field id="newtask" @keyup.enter.native="addTask($store.getters.title)" 
-       color="grey lighten-3" full-width v-model="$store.getters.title" placeholder=""></v-text-field>   
+    <v-text-field hide-details ref="input" autofocus id="newtask" @keyup.enter.native="addTask(name);name='';" 
+       color="grey lighten-3" full-width v-model="name" placeholder=""></v-text-field>   
   </div>
   </div>
 </template>
 <script>
-import {mapGetters,mapMutations} from 'vuex';
+import Events from '../events.js'
+import {mapGetters,mapActions} from 'vuex';
 import TaskItem from './TaskItem'
 export default {
     computed: {
-        ...mapGetters(['listItems'])
+        ...mapGetters(['listItems','isnewTask'])
+    },
+    created(){
+        Events.$on('setFocus', ()=>{
+            this.$refs.input.focus();
+        })
     },
     methods: {
-        ...mapMutations(['addTask'])
+        ...mapActions(['addTask'])
     },
     data(){
         return {
@@ -25,7 +30,8 @@ export default {
                 title: '',
                 completed: false,
                 type: 'spotify'
-            }
+            },
+            name: this.$store.getters.title
         }
     },
     components: {
@@ -38,7 +44,7 @@ export default {
 
 .task-box{
     
-    margin-top: -5rem;
+    margin-top: -4.6rem;
 }
 .dummy {
     /* background: linear-gradient(0deg, rgba(250, 250, 250, 0.993) 28.21%, #fffefef5 134.95%); */
@@ -51,6 +57,7 @@ export default {
 }
 input {
     text-indent: 3rem;
+    caret-color: black;
 }
 
 </style>

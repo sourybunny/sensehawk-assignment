@@ -2,11 +2,15 @@
     <div>
         <v-layout justify-end mt-3 v-if="isnewTask">
             <v-spacer></v-spacer>
-                <v-btn class="mx-3" :disabled="!showCompleted" small outlined color="orange" @click="setShowCompleted(false)" >All</v-btn>
-                <v-btn small outlined :disabled="showCompleted" color="orange" @click="setShowCompleted(true)" >Completed</v-btn>
+                <v-btn  small outlined color="orange" 
+                @click="showCompleted?handleList(false):handleList(true)" >
+                {{showCompleted?'Show All':'Show Completed'}}
+                </v-btn>
+                <!-- <v-btn small outlined  color="orange" @click="setShowCompleted(true)" >Completed</v-btn> -->
             
         </v-layout>
-        <v-layout mt-4 column>
+        <v-container class="white" py-0 my-0>
+            <v-layout mt-4 column>
             <v-flex>
                 <div v-if="showCompleted">
                     <p v-if=" isnewTask && completed.length<=0">You haven't completed any task</p>
@@ -23,27 +27,26 @@
             </v-flex>
             <NewTask v-if="$store.getters.isnewTask"/>
         </v-layout>
+        </v-container>
         
     </div>
 </template>
 
 <script>
-import {mapMutations, mapGetters} from 'vuex';
+import { mapGetters, mapActions} from 'vuex';
 import NewTask from './NewTask';
 import TaskItem from './TaskItem';
+// import store from '../store';
 export default {
     components: {
         NewTask,
         TaskItem
     },
     methods: {
-        ...mapMutations(['setShowCompleted'])
-    },
-    data () {
-      return {
-        
-        
-      }
+        ...mapActions(['setShowCompleted']),
+        handleList(val){
+            this.setShowCompleted(val)
+        }
     },
     computed: {
         ...mapGetters(['showCompleted','completed','listItems','isnewTask'])

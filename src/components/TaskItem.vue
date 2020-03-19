@@ -1,14 +1,18 @@
 <template>
   <div class="rect">
-                    <div class="layout align-center pl-4">
+                    <div class="layout align-center">
                         <v-checkbox filled v-model="task.completed"></v-checkbox> 
                         <div><span :class="{'grey--text':task.completed}">{{task.title}}</span></div>
                     </div>
-                    <div class="type align-center pr-4">
+                    <div class="mx-4 grey--text"><i class="scale-up  mr-2 far fa-folder"></i><span>0/3</span></div>
+                    
+                    <div class="mr-4 grey--text"><i class="fab scale-up  mr-2 fa-reddit"></i><span>3</span></div>
+                    <div class="align-center">
                         <!-- <v-select v-model="task.type"
                         :items="selects"
                         solo
                         ></v-select> -->
+                        
                         <select :class="classList" class="select chip  label px-3 py-2" v-model="task.type">
                             <option><span>spotify</span></option>
                             <option><span>sketch</span></option>
@@ -22,11 +26,6 @@
 <script>
 export default {
     props: ['task'],
-    data(){
-        return {
-            onHover: false
-        }
-    },
     computed: {
         classList(){
             var classlist = '';
@@ -53,7 +52,7 @@ export default {
 .rect {
     width: 100%;
     display: inline-flex;
-    /* height: 100px; */
+    height: 60px;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid rgba(224, 221, 221, 0.616);
@@ -66,8 +65,7 @@ export default {
 .title {
     float: left;
 }
-.type {
-    float: right;
+.scale-up{
+    /* transform: scale(1.2); */
 }
-
 </style>
