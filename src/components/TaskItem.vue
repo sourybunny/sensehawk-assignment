@@ -13,13 +13,26 @@
                         :items="selects"
                         solo
                         ></v-select> -->
+                        <!-- :class="classList" -->
+                        <v-select solo class=" transparent dropdown-select" v-model="task.type"
+                        :items="['spotify','sketch','dribble','iotask']"
+                        flat hide-details>
+                        <template v-slot:selection="{ item, index }">
+                            <v-chip :class="classList" label  v-if="index === 0">
+                                <span class="text-center">{{ item }}</span>
+                            </v-chip>
+                            <span
+                            v-if="index === 1"
+                            class="grey--text caption"
+                            >(+{{ value.length - 1 }} others)</span>
+                        </template></v-select>
                         
-                        <select :class="classList" class="select chip mr-3 label px-3 py-2" v-model="task.type">
-                            <option><span>spotify</span></option>
-                            <option><span>sketch</span></option>
-                            <option><span>dribble</span></option>
-                            <option><span>iotask</span></option>
-                        </select>
+                        <!-- <select :class="classList" class="selector chip mr-3 label px-3 py-2" v-model="task.type">
+                            <option value="spotify"><span id="dropdown" class="">spotify</span></option>
+                            <option value="sketch"><span>sketch</span></option>
+                            <option value="dribble"><span>dribble</span></option>
+                            <option value="iotask"><span>iotask</span></option>
+                        </select> -->
                     </div>
                 </div>
 </template>
@@ -75,7 +88,8 @@ export default {
 .title {
     float: left;
 }
-.scale-up{
-    /* transform: scale(1.2); */
+
+.dropdown-select {
+    width: 120px;
 }
 </style>
