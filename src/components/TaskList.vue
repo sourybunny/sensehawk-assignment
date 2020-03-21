@@ -7,7 +7,7 @@
                 {{showCompleted?'Show All':'Show Completed'}}
                 </v-btn>
         </v-layout>
-        <v-container class="white" py-0 mb-0>
+        <v-container class="white" mt-2 pt-1 pb-0 mb-0>
             <v-layout mt-4 column>
             <v-flex >
                 <div >

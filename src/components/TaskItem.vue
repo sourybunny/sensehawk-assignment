@@ -1,14 +1,14 @@
 <template>
   <div class="rect" :data-id="task.id">
-                    <div class="layout align-center ml-3">
+                    <div class="layout align-center">
                         <v-btn icon @click="onEdit"><i class="far grey--text fa-edit"></i></v-btn>
                         <v-checkbox class="ml-1" filled v-model="task.completed"></v-checkbox> 
                         <div><span :class="{'grey--text':task.completed}">{{task.title}}</span></div>
                     </div>
                     <div class="mx-4 grey--text"><i class="scale-up  mr-2 far fa-folder"></i><span>0/3</span></div>
                     
-                    <div class="mr-4 grey--text"><i class="fab scale-up  mr-2 fa-reddit"></i><span>3</span></div>
-                    <div class="align-center">
+                    <div class="mr-2 grey--text"><i class="fab scale-up  mr-2 fa-reddit"></i><span>3</span></div>
+                    <div class="align-center mr-2">
                         <v-select solo class=" transparent dropdown-select" v-model="task.type"
                         :items="['spotify','sketch','dribble','iotask']"
                         flat hide-details>
