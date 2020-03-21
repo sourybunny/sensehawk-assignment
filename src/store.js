@@ -64,9 +64,7 @@ const mutations = {
     },
     updateTask: (state, payload)=>{
         let index  = state.list.findIndex(task=>task.id == payload.id);
-        if(index>0){
             state.list.splice(index,1,payload);
-        }
     },
     setEditingTask: (state,payload)=>{
         state.changeTask = payload;

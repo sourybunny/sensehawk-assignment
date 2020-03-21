@@ -9,11 +9,6 @@
                     
                     <div class="mr-4 grey--text"><i class="fab scale-up  mr-2 fa-reddit"></i><span>3</span></div>
                     <div class="align-center">
-                        <!-- <v-select v-model="task.type"
-                        :items="selects"
-                        solo
-                        ></v-select> -->
-                        <!-- :class="classList" -->
                         <v-select solo class=" transparent dropdown-select" v-model="task.type"
                         :items="['spotify','sketch','dribble','iotask']"
                         flat hide-details>
